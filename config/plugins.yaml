@@ -10,7 +10,7 @@
 - repo: thinca/vim-localrc
 - repo: christoomey/vim-tmux-navigator
 - repo: junegunn/vim-peekaboo
-- repo: tpope/vim-sleuth
+# - repo: tpope/vim-sleuth
 - repo: itchyny/vim-gitbranch
 - repo: itchyny/vim-parenmatch
 - repo: itchyny/vim-cursorword
@@ -28,7 +28,7 @@
 - { repo: ap/vim-css-color, on_ft: [ css, scss, sass ] }
 - { repo: cakebaker/scss-syntax.vim, on_ft: [ scss, sass ]}
 - { repo: groenewege/vim-less, on_ft: less }
-- { repo: othree/csscomplete.vim, on_ft: css }
+# - { repo: othree/csscomplete.vim, on_ft: css }
 
 - { repo: mitsuhiko/vim-jinja, on_ft: [ htmljinja, jinja ]}
 - { repo: mustache/vim-mustache-handlebars, on_ft: html }
@@ -74,18 +74,19 @@
     let g:javascript_plugin_flow = 1
     highlight! link jsFutureKeys PreProc
 
-- { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
-- { repo: MaxMEllon/vim-jsx-pretty, on_ft: [ javascript, jsx, javascript.jsx ]}
-- { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
-- { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
+# - { repo: othree/jspc.vim, on_ft: [ javascript, jsx, javascript.jsx ] }
+# - { repo: MaxMEllon/vim-jsx-pretty, on_ft: [ javascript, jsx, javascript.jsx ]}
+- { repo: neoclide/vim-jsx-improve, on_ft: [ javascript, jsx, javascript.jsx ]}
+# - { repo: heavenshell/vim-jsdoc, on_ft: [ javascript, jsx, javascript.jsx ] }
+# - { repo: moll/vim-node, on_ft: [ javascript, jsx, javascript.jsx ] }
 - { repo: elzr/vim-json, on_ft: json }
 
 # pangloss/javascript vs. othree/yajs
 #- { repo: othree/yajs.vim, on_ft: [ javascript, jsx, javascript.jsx ]}
 #- { repo: gavocanov/vim-js-indent, on_ft: [ javascript, jsx, javascript.jsx ]}
-#- repo: mxw/vim-jsx
-#  on_ft: [ javascript, jsx, javascript.jsx ]
-#  hook_source: let g:jsx_ext_required = 0
+- repo: mxw/vim-jsx
+  on_ft: [ javascript, jsx, javascript.jsx ]
+  hook_source: let g:jsx_ext_required = 1
 
 - repo: fatih/vim-go
   on_ft: go
@@ -96,7 +97,7 @@
     let g:go_highlight_extra_types = 1
     let g:go_highlight_operators = 1
 
-- { repo: vim-python/python-syntax, on_ft: python }
+    #- { repo: vim-python/python-syntax, on_ft: python }
 - { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
 - { repo: vim-scripts/python_match.vim, on_ft: python }
 - { repo: tmhedberg/SimpylFold, on_ft: python }
@@ -194,26 +195,26 @@
     let g:gitgutter_map_keys = 0
     let g:gitgutter_sh = $SHELL
 
-- repo: nathanaelkane/vim-indent-guides
-  on_cmd: [ IndentGuidesEnable, IndentGuidesDisable, IndentGuidesToggle ]
-  hook_post_source: |
-    call indent_guides#init_script_vars()
-    call indent_guides#highlight_colors()
-  hook_add: |
-    let g:indent_guides_color_change_percent = 3
-    let g:indent_guides_autocmds_enabled = 0
-    let g:indent_guides_default_mapping = 0
-    let g:indent_guides_guide_size = 1
-    let g:indent_guides_indent_levels = 15
-    let g:custom_exclude = [ 'help', 'denite', 'codi' ]
-    autocmd MyAutoCmd BufEnter *
-      \ if ! empty(&l:filetype) && index(g:custom_exclude, &l:filetype) == -1
-      \|   if g:indent_guides_autocmds_enabled == 0 && &l:expandtab
-      \|     IndentGuidesEnable
-      \|   elseif g:indent_guides_autocmds_enabled == 1 && ! &l:expandtab
-      \|     IndentGuidesDisable
-      \|   endif
-      \| endif
+# - repo: nathanaelkane/vim-indent-guides
+#   on_cmd: [ IndentGuidesEnable, IndentGuidesDisable, IndentGuidesToggle ]
+#   hook_post_source: |
+#     call indent_guides#init_script_vars()
+#     call indent_guides#highlight_colors()
+#   hook_add: |
+#     let g:indent_guides_color_change_percent = 3
+#     let g:indent_guides_autocmds_enabled = 0
+#     let g:indent_guides_default_mapping = 0
+#     let g:indent_guides_guide_size = 1
+#     let g:indent_guides_indent_levels = 15
+#     let g:custom_exclude = [ 'help', 'denite', 'codi' ]
+#     autocmd MyAutoCmd BufEnter *
+#       \ if ! empty(&l:filetype) && index(g:custom_exclude, &l:filetype) == -1
+#       \|   if g:indent_guides_autocmds_enabled == 0 && &l:expandtab
+#       \|     IndentGuidesEnable
+#       \|   elseif g:indent_guides_autocmds_enabled == 1 && ! &l:expandtab
+#       \|     IndentGuidesDisable
+#       \|   endif
+#       \| endif
 
 - repo: MattesGroeger/vim-bookmarks
   on_path: .*
@@ -313,19 +314,7 @@
     let g:neosnippet#expand_word_boundary = 1
     autocmd MyAutoCmd InsertLeave * NeoSnippetClearMarkers
 
-- repo: ludovicchabant/vim-gutentags
-  if: executable('ctags') && empty($VIM_MINIMAL)
-  on_path: .*
-  hook_add: |
-    let g:gutentags_cache_dir = $VARPATH.'/tags'
-    let g:gutentags_generate_on_write = 1
-    let g:gutentags_generate_on_missing = 0
-    let g:gutentags_generate_on_new = 0
-    let g:gutentags_ctags_exclude_wildignore = 1
-    let g:gutentags_ctags_exclude = [
-      \ '*/wp-admin', '*/wp-content', '*/wp-includes',
-      \ '*/application/vendor', '*/vendor/ckeditor', '*/media/vendor'
-      \ ]
+#- repo: /home/ramdhan/repo_git/vim-gutentags
 
 - repo: mattn/emmet-vim
   if: empty($VIM_MINIMAL)
