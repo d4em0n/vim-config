@@ -350,4 +350,10 @@ function! s:execute_system_associated(filenode)
 endfunction
 " }}}
 
+autocmd VimEnter *
+    \   if !argc()
+    \ |   execute 'NERDTreeToggle'
+    \ |   wincmd w
+    \ | endif
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
