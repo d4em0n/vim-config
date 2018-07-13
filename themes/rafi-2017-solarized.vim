@@ -22,37 +22,37 @@ set listchars=tab:\▏\ ,extends:⟫,precedes:⟪,nbsp:␣,trail:·
 " Tabline {{{
 " ---------------------------------------------------------
 " TabLineFill: Tab pages line, where there are no labels
-hi TabLineFill ctermfg=234 ctermbg=236 guifg=#1C1C1C guibg=#303030 cterm=NONE gui=NONE
+hi TabLineFill ctermfg=234 ctermbg=236 guifg=#98C793 guibg=#353C46 cterm=NONE gui=NONE
 " TabLine: Not-active tab page label
-hi TabLine     ctermfg=243 ctermbg=236 guifg=#767676 guibg=#303030 cterm=NONE gui=NONE
+hi TabLine  ctermfg=241 ctermbg=234 guifg=#626262 guibg=#343D46 cterm=NONE gui=NONE
 " TabLineSel: Active tab page label
-hi TabLineSel  ctermfg=241 ctermbg=234 guifg=#626262 guibg=#1C1C1C cterm=NONE gui=NONE
+hi TabLineSel     ctermfg=243 ctermbg=236 guifg=#ffffff guibg=#98C793 cterm=bold gui=bold
 " Custom
-highlight TabLineSelShade  ctermfg=235 ctermbg=234 guifg=#262626 guibg=#1C1C1C
-highlight TabLineAlt       ctermfg=252 ctermbg=238 guifg=#D0D0D0 guibg=#444444
-highlight TabLineAltShade  ctermfg=238 ctermbg=236 guifg=#444444 guibg=#303030
+highlight TabLineSelShade  ctermfg=235 ctermbg=234 guifg=#353C46 guibg=#98C793
+highlight TabLineAlt       ctermfg=252 ctermbg=238 guifg=#ffffff guibg=#5FB3B2 gui=bold
+highlight TabLineAltShade  ctermfg=238 ctermbg=236 guifg=#5FB3B2 guibg=#353C46
 
 function! Tabline() abort "{{{
 	" Active project tab
 	let s:tabline =
 		\ '%#TabLineAlt# %{badge#project()} '.
-		\ '%#TabLineAltShade#▛'.
-		\ '%#TabLineFill#  '
+		\ '%#TabLineAltShade#'.
+		\ '%#TabLineFill# '
 
 	let nr = tabpagenr()
 	for i in range(tabpagenr('$'))
 		if i + 1 == nr
 			" Active tab
 			let s:tabline .=
-				\ '%#TabLineSelShade#░%#TabLineSel#'.
-				\ '%'.(i+1).'T%{badge#label('.(i+1).', "▛", "N/A")} '.
-				\ '%#TabLineFill#▞ '
+				\ '%#TabLineSelShade#%#TabLineSel# '.
+				\ '%'.(i+1).'T%{badge#label('.(i+1).', "", "N/A")} '.
+				\ '%#TabLineFill#'
 		else
 			" Normal tab
 			let s:tabline .=
 				\ '%#TabLine# '.
-				\ '%'.(i+1).'T%{badge#label('.(i+1).', "▛", "N/A")} '.
-				\ '▘ '
+				\ '%'.(i+1).'T%{badge#label('.(i+1).', "", "N/A")} '.
+				\ ''
 		endif
 	endfor
 	" Empty space and session indicator
@@ -70,7 +70,7 @@ let s:stl .= "%4*%{&readonly ? '' : '#'}%*"       " Modifide symbol
 let s:stl .= "%6*%{badge#mode('⚠ ', 'Z')}"        " Read-only symbol
 let s:stl .= '%*%n'                               " Buffer number
 let s:stl .= "%6*%{badge#modified('+')}%0*"       " Write symbol
-let s:stl .= ' %1*%{badge#filename()}%*'          " Filename
+let s:stl .= ' %1* %{badge#filename()} %*'          " Filename
 let s:stl .= ' %<'                                " Truncate here
 let s:stl .= '%( %{badge#branch()} %)'           " Git branch name
 let s:stl .= "%4*%(%{badge#trails('⤐ %s')} %)"  " Whitespace
@@ -91,17 +91,17 @@ let s:stl_nc .= '%{&ft} '                      " File type
 " }}}
 
 " Highlights: Statusline {{{
-highlight StatusLine   ctermfg=236 ctermbg=248 guifg=#30302c guibg=#a8a897
+highlight StatusLine   ctermfg=236 ctermbg=248 guifg=#ffffff guibg=#353C46
 highlight StatusLineNC ctermfg=236 ctermbg=242 guifg=#30302c guibg=#666656
 
 " Filepath color
-highlight User1 guifg=#D7D7BC guibg=#30302c ctermfg=251 ctermbg=236
+highlight User1 guifg=#ffffff guibg=#98C793 ctermfg=251 ctermbg=236 gui=bold cterm=bold
 " Line and column information
-highlight User2 guifg=#a8a897 guibg=#4e4e43 ctermfg=248 ctermbg=239
+highlight User2 guifg=#ffffff guibg=#669ACC ctermfg=248 ctermbg=239 gui=bold cterm=bold
 " Line and column corner arrow
-highlight User3 guifg=#4e4e43 guibg=#30302c ctermfg=239 ctermbg=236
+highlight User3 guifg=#669ACC guibg=#353C46 ctermfg=239 ctermbg=236
 " Buffer # symbol and whitespace or syntax errors
-highlight User4 guifg=#666656 guibg=#30302c ctermfg=242 ctermbg=236
+highlight User4 guifg=#C692C7 guibg=#353C46 ctermfg=242 ctermbg=236
 " Write symbol
 highlight User6 guifg=#cf6a4c guibg=#30302c ctermfg=167 ctermbg=236
 " Paste symbol
