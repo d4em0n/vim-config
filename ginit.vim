@@ -1,2 +1,2 @@
-call rpcnotify(1, 'Gui', 'Font', 'DejaVu Sans Mono 10.5')
+call rpcnotify(1, 'Gui', 'Font', 'Hack Nerd Font Mono 10.5')
 
